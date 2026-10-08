@@ -147,9 +147,11 @@
   .host .blob{width:92px;height:92px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--on-accent)}
   .host:nth-child(1) .blob{background:var(--berry); border-radius:46% 54% 60% 40% / 52% 40% 60% 48%}
   .host:nth-child(2) .blob{background:var(--tangerine); border-radius:58% 42% 44% 56% / 44% 58% 42% 56%}
-  .avatar{display:block; width:120px; height:120px; border-radius:50%; object-fit:cover; object-position:50% 45%; box-shadow:0 10px 24px rgba(36,30,32,.18); transition:transform .3s ease}
-  .av-t{border:5px solid var(--berry)} .av-d{border:5px solid var(--tangerine)}
-  .host:hover .avatar{transform:rotate(-3deg) scale(1.04)}
+  .duo-row{display:grid; grid-template-columns:minmax(0,340px) 1fr; gap:40px; align-items:center; margin-top:44px}
+  .duo-photo{display:block; width:100%; height:auto; aspect-ratio:5/6; object-fit:cover; border-radius:var(--r-lg); box-shadow:0 18px 40px rgba(36,30,32,.18)}
+  .duo-row .duo{margin:0; text-align:left; font-family:var(--display); font-weight:700; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.2; color:var(--ink)}
+  @media (max-width:760px){ .duo-row .duo{text-align:center} .duo-photo{margin:0 auto} }
+  @media (max-width:760px){ .duo-row{grid-template-columns:1fr; gap:24px} .duo-photo{max-width:340px} }
   .host h3{font-size:2rem}
   .host .dxs{display:flex; flex-wrap:wrap; gap:8px}
   .host .dx{display:inline-flex; align-items:center; gap:8px; align-self:flex-start; font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; padding:7px 12px; border-radius:var(--r-pill); border:2px solid var(--ink)}
@@ -251,7 +253,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .gutline path{animation:none} .ticker-track{animation:none} .hero-tag i{animation:none}
-    .btn:hover,.soc:hover,.host:hover .avatar{transform:none}
+    .btn:hover,.soc:hover{transform:none}
   }
 </style>
 
@@ -340,21 +342,24 @@
     <h2 style="font-size:clamp(2.2rem,5vw,3.8rem)">Friends first. Patients second. Not doctors, ever.</h2>
     <div class="host-grid">
       <article class="host">
-        <img class="avatar av-t" src="tamsin.webp" width="480" height="480" alt="Tamsin, smiling in pink sunglasses with a butterfly hair clip" loading="lazy">
+        <div class="blob">T</div>
         <h3>Tamsin</h3>
         <div class="dxs"><span class="dx">Desmosis coli</span><span class="dx">PMOS</span></div>
         <p>Lives with desmosis coli, a genetic gut disorder so rare it has a handful of documented cases worldwide, plus PMOS (the condition formerly known as PCOS) and a few things she still hasn't got a diagnosis for. Has lived in five countries, now lives and works in Switzerland, and is happiest in a room full of people, collecting their stories.</p>
         <p class="fact"><b>Known for:</b> getting anyone talking within five minutes.</p>
       </article>
       <article class="host">
-        <img class="avatar av-d" src="dilan.webp" width="480" height="480" alt="Dilan, smiling in orange sunglasses with a flower hair clip" loading="lazy">
+        <div class="blob">D</div>
         <h3>Dilan</h3>
         <div class="dxs"><span class="dx">Crohn's disease</span></div>
         <p>Lives with Crohn's disease and has turned years of appointments, flare-ups and second opinions into hard-won expertise. From Berlin, speaks Turkish, German and English, and is never short of a story or a strong opinion.</p>
         <p class="fact"><b>Known for:</b> being warm, generous and the friend you can always count on.</p>
       </article>
     </div>
-    <p class="duo">Two economics-and-finance grads turning invisible illness into a conversation worth having.</p>
+    <div class="duo-row">
+      <img class="duo-photo fade" src="duo.webp" width="800" height="960" alt="Tamsin and Dilan, the hosts, smiling side by side in bright sunglasses against a blue sky" loading="lazy">
+      <p class="duo">Two economics-and-finance grads turning invisible illness into a conversation worth having.</p>
+    </div>
   </div>
 </section>
 
