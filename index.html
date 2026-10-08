@@ -94,27 +94,31 @@
   @media (max-width:760px){ .nav-links{display:none} }
 
   /* HERO */
-  .hero{position:relative; padding-block:clamp(48px,8vw,110px) clamp(40px,6vw,80px); overflow:hidden}
-  .hero .wrap{position:relative; z-index:1; display:grid; grid-template-columns:1.06fr .94fr; gap:clamp(28px,5vw,64px); align-items:center}
-  .hero-logo{display:block; width:100%; max-width:440px; height:auto; margin-inline:auto; filter:drop-shadow(0 22px 44px rgba(36,30,32,.18))}
-  .tagline{margin-top:20px; font-weight:700; font-size:clamp(.92rem,1.4vw,1.05rem); letter-spacing:.03em; color:var(--berry); max-width:34ch; text-transform:uppercase; line-height:1.45}
+  .hero{position:relative; padding-block:clamp(20px,2.6vw,36px) clamp(28px,3.4vw,48px); overflow:hidden}
+  .hero .wrap{position:relative; z-index:1; display:grid; grid-template-columns:1.06fr .94fr; gap:clamp(24px,4vw,56px); align-items:center}
+  .hero-side{display:flex; flex-direction:column; align-items:center; gap:16px; min-width:0}
+  .hero-logo{display:block; width:100%; max-width:min(400px,50vh); height:auto; margin-inline:auto; filter:drop-shadow(0 22px 44px rgba(36,30,32,.18))}
+  .tagline{margin-top:14px; font-weight:700; font-size:clamp(.92rem,1.4vw,1.05rem); letter-spacing:.03em; color:var(--berry); max-width:34ch; text-transform:uppercase; line-height:1.45}
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr}
-    .hero-logo{order:-1; max-width:320px}
+    .hero-side{display:contents}
+    .hero-logo{order:-2; max-width:min(320px,100%)}
+    .hero-tag{order:-1; justify-self:center}
+    .hero-meta{justify-content:flex-start}
   }
   .gutline{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0}
   .gutline path{fill:none; stroke:var(--tangerine); stroke-width:34; stroke-linecap:round; stroke-linejoin:round;
     stroke-dasharray:4000; stroke-dashoffset:0; opacity:.26; animation:draw 2.4s cubic-bezier(.6,0,.2,1) both}
   @keyframes draw{from{stroke-dashoffset:4000}to{stroke-dashoffset:0}}
-  .hero-tag{display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-pill); padding:8px 14px; font-weight:600; font-size:.85rem; color:var(--ink-soft); margin-bottom:26px; box-shadow:var(--shadow)}
+  .hero-tag{display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-pill); padding:8px 14px; font-weight:600; font-size:.85rem; color:var(--ink-soft); margin-bottom:0; box-shadow:var(--shadow)}
   .hero-tag i{width:9px;height:9px;border-radius:50%;background:var(--berry); display:inline-block; animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
-  .hero h1{font-size:clamp(3.2rem,11vw,8.6rem); line-height:.9; font-variation-settings:'wdth' 88,'opsz' 96}
+  .hero h1{font-size:clamp(3rem,7.4vw,6.2rem); line-height:.9; font-variation-settings:'wdth' 88,'opsz' 96}
   .hero h1 .b{color:var(--berry)}
   .hero h1 .o{color:var(--tangerine)}
-  .hero-sub{margin-top:26px; max-width:46ch; font-size:clamp(1.05rem,1.6vw,1.3rem); color:var(--ink-soft)}
-  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
-  .hero-meta{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:34px; font-size:.9rem; font-weight:600; color:var(--ink-soft)}
+  .hero-sub{margin-top:16px; max-width:46ch; font-size:clamp(1.05rem,1.6vw,1.3rem); color:var(--ink-soft)}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
+  .hero-meta{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; margin:0; font-size:.9rem; font-weight:600; color:var(--ink-soft)}
   .hero-meta span::before{content:"●"; color:var(--butter); margin-right:8px; font-size:.7rem; vertical-align:middle}
 
   /* TICKER */
@@ -256,7 +260,6 @@
   </svg>
   <div class="wrap">
     <div class="hero-copy">
-    <div class="hero-tag"><i></i> First episodes in production</div>
     <h1>we <span class="b">gut</span> you,<br>ba<span class="o">be</span>.</h1>
     <p class="tagline">A podcast on bowel disease, invisible illness &amp; real life</p>
     <p class="hero-sub">Two friends. Two chronic bowel diseases. One podcast about living with an illness nobody can see, and everything that comes with it.</p>
@@ -268,13 +271,16 @@
       </a>
       <a class="btn btn-ghost" href="#episodes">What to expect</a>
     </div>
+    </div>
+    <div class="hero-side">
+      <img class="hero-logo" src="logo-v2.webp" width="1254" height="1254" alt="We Gut You Babe — illustrated portrait of Tamsin and Dilan on a circular sticker">
+      <div class="hero-tag"><i></i> First episodes in production</div>
     <div class="hero-meta">
       <span>New episodes every week-ish</span>
       <span>Crohn's, desmosis coli &amp; PMOS</span>
       <span>Hosted from Switzerland, in English</span>
     </div>
     </div>
-    <img class="hero-logo" src="logo-v2.webp" width="1254" height="1254" alt="We Gut You Babe — illustrated portrait of Tamsin and Dilan on a circular sticker">
   </div>
 </section>
 
