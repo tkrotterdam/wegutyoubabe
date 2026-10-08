@@ -235,6 +235,17 @@
   footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; align-items:center}
   footer .note{max-width:60ch}
 
+  /* SOFT MOTION */
+  .fade{opacity:0; transform:translateY(18px); transition:opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0s)}
+  .fade.in{opacity:1; transform:none}
+  .hero-logo{animation:bob 7s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(.6deg)}}
+  .gutline{will-change:transform}
+  @media (prefers-reduced-motion:reduce){
+    .fade{opacity:1; transform:none; transition:none}
+    .hero-logo{animation:none}
+  }
+
   @media (prefers-reduced-motion:reduce){
     .gutline path{animation:none} .ticker-track{animation:none} .hero-tag i{animation:none}
     .btn:hover,.soc:hover{transform:none}
@@ -493,6 +504,48 @@
       window.location.href = 'mailto:wegutyoubabe@gmail.com?subject=' + subject + '&body=' + body;
       hint.textContent = 'Your email app should be open now. Send the message and you are on the list.';
     });
+  })();
+</script>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return;
+
+    /* scroll reveal: only things below the fold are hidden, and only once we know they can be revealed */
+    if('IntersectionObserver' in window){
+      var sel = '.why, .host, .stop, .pane, .chip, .soc, .plat, .signup, .qr-card, .guest, .season-head, .why-grid + .duo, .host-grid + .duo, .invisible h2, .invisible .lede, .inv-foot, .follow h2, section > .wrap > .eyebrow, #why h2, #us h2';
+      var vh = window.innerHeight || 800;
+      var els = Array.prototype.slice.call(document.querySelectorAll(sel)).filter(function(el){
+        return el.getBoundingClientRect().top > vh * 0.92;
+      });
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+      els.forEach(function(el){
+        var sibs = el.parentElement ? Array.prototype.slice.call(el.parentElement.children) : [];
+        var i = Math.max(0, sibs.indexOf(el));
+        el.style.setProperty('--d', Math.min(i*0.09, 0.36)+'s');
+        el.classList.add('fade');
+        io.observe(el);
+      });
+    }
+
+    /* the gut line drifts gently as you scroll */
+    var gut = document.querySelector('.gutline');
+    if(gut){
+      var ticking = false;
+      window.addEventListener('scroll', function(){
+        if(ticking) return; ticking = true;
+        requestAnimationFrame(function(){
+          var y = Math.min(window.scrollY || 0, 700);
+          gut.style.transform = 'translateY(' + (y*0.16) + 'px)';
+          ticking = false;
+        });
+      }, {passive:true});
+    }
   })();
 </script>
 
